@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrar Venda - Painel</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- ========================= -->
+  <!-- Header -->
+  <!-- ========================= -->
+
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">
+          P
+        </div>
+        <h1 class="text-xl font-bold text-gray-800">
+          Painel
+        </h1>
+      </div>
+
+      <!-- Menu Desktop -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#usuarios" class="text-gray-500 hover:text-blue-600 transition">
+          Cadastro de usuários
+        </a>
+        <a href="#sair" class="text-gray-500 hover:text-red-600 transition">
+          Sair
+        </a>
+      </div>
+
+      <!-- Burger Button -->
+      <button
+        id="menuButton"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-gray-700 hover:bg-gray-200 transition"
+      >
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ========================= -->
+  <!-- Overlay -->
+  <!-- ========================= -->
+  <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
+
+  <!-- ========================= -->
+  <!-- Menu Lateral Mobile -->
+  <!-- ========================= -->
+  <aside
+    id="sideMenu"
+    class="fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+  >
+    <div class="h-16 px-6 border-b border-gray-200 flex items-center justify-between">
+      <h2 class="text-lg font-bold text-gray-800">Menu</h2>
+      <button id="closeMenu" type="button" aria-label="Fechar menu" class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 hover:bg-gray-200 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="p-6 flex flex-col gap-2">
+      <a href="#usuarios" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition font-medium">
+        Cadastro de usuários
+      </a>
+      <a href="#sair" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition font-medium">
+        Sair
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========================= -->
+  <!-- Conteúdo Principal -->
+  <!-- ========================= -->
+
+  <main class="flex-1 pt-24 pb-12 px-6">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Botão Voltar -->
+      <a href="usuario.html" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition mb-6 font-medium gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar para o Painel
+      </a>
+
+      <!-- Título da Página -->
+      <div class="mb-8">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">
+          Registrar Venda
+        </h2>
+        <p class="mt-2 text-gray-500">
+          Adicione os produtos ao carrinho e finalize a operação.
+        </p>
+      </div>
+
+      <!-- Layout em Grid (2 Colunas: Tabela | Resumo) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- ========================= -->
+        <!-- Coluna Esquerda: Produtos -->
+        <!-- ========================= -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Formulário Adicionar Produto -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-5">Adicionar Produto</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Produto (Nome ou Código)</label>
+                <input 
+                  type="text" 
+                  placeholder="Buscar produto..."
+                  class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                >
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
+                <input 
+                  type="number" 
+                  value="1" 
+                  min="1"
+                  class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                >
+              </div>
+              <div>
+                <button class="w-full bg-blue-600 text-white rounded-xl px-4 py-3 font-semibold hover:bg-blue-700 transition">
+                  Adicionar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela de Itens (Carrinho) -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 overflow-x-auto">
+            <h3 class="text-xl font-bold text-gray-800 mb-5">Itens da Venda</h3>
+            <table class="w-full min-w-[600px] text-left border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200 text-sm text-gray-500 uppercase tracking-wider">
+                  <th class="py-3 px-4 font-medium">Produto</th>
+                  <th class="py-3 px-4 font-medium text-center">Qtd</th>
+                  <th class="py-3 px-4 font-medium text-right">Preço Unit.</th>
+                  <th class="py-3 px-4 font-medium text-right">Subtotal</th>
+                  <th class="py-3 px-4 font-medium text-center">Ação</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 text-gray-700">
+                
+                <!-- Exemplo Item 1 -->
+                <tr class="hover:bg-gray-50 transition group">
+                  <td class="py-4 px-4 font-medium">Teclado Mecânico RGB</td>
+                  <td class="py-4 px-4 text-center">1</td>
+                  <td class="py-4 px-4 text-right">R$ 350,00</td>
+                  <td class="py-4 px-4 text-right font-bold text-gray-800">R$ 350,00</td>
+                  <td class="py-4 px-4 text-center">
+                    <button class="text-gray-400 hover:text-red-500 transition" title="Remover">
+                      <svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Exemplo Item 2 -->
+                <tr class="hover:bg-gray-50 transition group">
+                  <td class="py-4 px-4 font-medium">Mouse Sem Fio Logitech</td>
+                  <td class="py-4 px-4 text-center">2</td>
+                  <td class="py-4 px-4 text-right">R$ 120,00</td>
+                  <td class="py-4 px-4 text-right font-bold text-gray-800">R$ 240,00</td>
+                  <td class="py-4 px-4 text-center">
+                    <button class="text-gray-400 hover:text-red-500 transition" title="Remover">
+                      <svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            
+            <!-- Estado vazio (Exemplo, caso não houvessem produtos) -->
+            <!-- 
+            <div class="py-10 text-center text-gray-400">
+              <p>Nenhum produto adicionado à venda.</p>
+            </div> 
+            -->
+
+          </div>
+        </div>
+
+        <!-- ========================= -->
+        <!-- Coluna Direita: Checkout -->
+        <!-- ========================= -->
+        <div>
+          <!-- Usamos 'sticky' para o resumo acompanhar o scroll da página se houver muitos produtos -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 sticky top-24">
+            
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Resumo</h3>
+            
+            <!-- Detalhes de Valores -->
+            <div class="space-y-4 mb-6 text-gray-600">
+              <div class="flex justify-between">
+                <span>Subtotal</span>
+                <span>R$ 590,00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>Desconto</span>
+                <input type="text" placeholder="R$ 0,00" class="w-24 text-right border border-gray-300 rounded-lg px-2 py-1 text-sm focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <!-- Total -->
+            <div class="border-t border-gray-200 pt-5 pb-6 flex justify-between items-end">
+              <span class="text-lg font-bold text-gray-800">Total</span>
+              <span class="text-3xl font-bold text-blue-600">R$ 590,00</span>
+            </div>
+
+            <!-- Forma de Pagamento -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Forma de Pagamento</label>
+              <select class="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                <option value="dinheiro">Dinheiro</option>
+                <option value="credito">Cartão de Crédito</option>
+                <option value="debito">Cartão de Débito</option>
+                <option value="pix">PIX</option>
+              </select>
+            </div>
+
+            <!-- Botão de Finalizar -->
+            <button class="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl px-4 py-4 font-bold text-lg transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/40 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Finalizar Venda
+            </button>
+            
+            <button class="w-full text-red-500 hover:text-red-700 hover:bg-red-50 transition rounded-xl px-4 py-3 mt-3 font-semibold">
+              Cancelar
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================= -->
+  <!-- Footer -->
+  <!-- ========================= -->
+  <footer class="bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-5 text-center text-sm text-gray-500">
+      © 2026 Painel — Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Script Externo -->
+  <script src="js/header.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Usuários - Painel</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- ========================= -->
+  <!-- Header -->
+  <!-- ========================= -->
+
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">
+          P
+        </div>
+        <h1 class="text-xl font-bold text-gray-800">
+          Painel
+        </h1>
+      </div>
+
+      <!-- Menu Desktop -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="cadastro-usuarios.html" class="text-blue-600 font-medium transition">
+          Cadastro de usuários
+        </a>
+        <a href="usuario.html" class="text-gray-500 hover:text-red-600 transition">
+          Sair
+        </a>
+      </div>
+
+      <!-- Burger Button -->
+      <button
+        id="menuButton"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-gray-700 hover:bg-gray-200 transition"
+      >
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ========================= -->
+  <!-- Overlay -->
+  <!-- ========================= -->
+  <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
+
+  <!-- ========================= -->
+  <!-- Menu Lateral Mobile -->
+  <!-- ========================= -->
+  <aside
+    id="sideMenu"
+    class="fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+  >
+    <div class="h-16 px-6 border-b border-gray-200 flex items-center justify-between">
+      <h2 class="text-lg font-bold text-gray-800">Menu</h2>
+      <button id="closeMenu" type="button" aria-label="Fechar menu" class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 hover:bg-gray-200 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="p-6 flex flex-col gap-2">
+      <a href="cadastro-usuarios.html" class="px-4 py-3 rounded-lg bg-blue-50 text-blue-600 transition font-medium">
+        Cadastro de usuários
+      </a>
+      <a href="usuario.html" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition font-medium">
+        Sair
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========================= -->
+  <!-- Conteúdo Principal -->
+  <!-- ========================= -->
+
+  <main class="flex-1 pt-24 pb-12 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Botão Voltar -->
+      <a href="usuario.html" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition mb-6 font-medium gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar para o Painel
+      </a>
+
+      <!-- Título da Página -->
+      <div class="mb-8">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">
+          Cadastro de Usuário
+        </h2>
+        <p class="mt-2 text-gray-500">
+          Preencha os dados abaixo para adicionar um novo usuário ao sistema.
+        </p>
+      </div>
+
+      <!-- ========================= -->
+      <!-- Card do Formulário -->
+      <!-- ========================= -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-10">
+        
+        <form action="#" method="POST">
+          
+          <!-- Grid do Formulário (2 colunas no desktop, 1 no mobile) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Nome -->
+            <div>
+              <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+              <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                placeholder="Ex: João"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+            </div>
+
+            <!-- Sobrenome -->
+            <div>
+              <label for="sobrenome" class="block text-sm font-medium text-gray-700 mb-1">Sobrenome</label>
+              <input 
+                type="text" 
+                id="sobrenome" 
+                name="sobrenome" 
+                placeholder="Ex: Silva"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+            </div>
+
+            <!-- CPF -->
+            <div>
+              <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF</label>
+              <input 
+                type="text" 
+                id="cpf" 
+                name="cpf" 
+                placeholder="000.000.000-00"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+            </div>
+
+            <!-- Data de Nascimento -->
+            <div>
+              <label for="data_nascimento" class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento</label>
+              <input 
+                type="date" 
+                id="data_nascimento" 
+                name="data_nascimento" 
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+            </div>
+
+            <!-- Função -->
+            <div>
+              <label for="funcao" class="block text-sm font-medium text-gray-700 mb-1">Função no Sistema</label>
+              <select 
+                id="funcao" 
+                name="funcao" 
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+                <option value="" disabled selected>Selecione uma função...</option>
+                <option value="funcionario">Funcionário</option>
+                <option value="administrador">Administrador</option>
+              </select>
+            </div>
+
+            <!-- Senha -->
+            <div>
+              <label for="senha" class="block text-sm font-medium text-gray-700 mb-1">Senha de Acesso</label>
+              <input 
+                type="password" 
+                id="senha" 
+                name="senha" 
+                placeholder="Digite a senha"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                required
+              >
+            </div>
+
+          </div>
+
+          <!-- Linha divisória -->
+          <hr class="my-8 border-gray-200">
+
+          <!-- Botões de Ação -->
+          <div class="flex flex-col md:flex-row items-center justify-end gap-4">
+            <button 
+              type="button" 
+              class="w-full md:w-auto px-6 py-3 rounded-xl text-gray-600 font-semibold hover:bg-gray-100 transition"
+            >
+              Cancelar
+            </button>
+            <button 
+              type="submit" 
+              class="w-full md:w-auto px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/20 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            >
+              Salvar Usuário
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================= -->
+  <!-- Footer -->
+  <!-- ========================= -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-5 text-center text-sm text-gray-500">
+      © 2026 Painel — Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Script Externo -->
+  <script src="js/header.js"></script>
+
+</body>
+</html>
